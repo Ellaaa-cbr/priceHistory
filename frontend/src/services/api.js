@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const BASE_URL = 'https://localhost:5001/api' || '/api'
+const BASE_URL = 'http://localhost:5098/api'
 
 const api = axios.create({
   baseURL: BASE_URL,
@@ -10,7 +10,7 @@ const api = axios.create({
 api.interceptors.response.use(
   (res) => res,
   (err) => {
-    console.error('API 请求失败:', err?.response?.status, err?.response?.data || err.message)
+    console.error('API fail:', err?.response?.status, err?.response?.data || err.message)
     return Promise.reject(err)
   }
 )

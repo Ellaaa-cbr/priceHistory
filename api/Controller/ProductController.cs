@@ -31,7 +31,7 @@ namespace api.Controller
             return Ok(product);
         }
 
-        [HttpGet("{ProductNo}")]
+        [HttpGet("{ProductNo:int}")]
         public async Task<IActionResult> GetById([FromRoute] int ProductNo)
         {
             var product = await _productRepository.GetByIdAsync(ProductNo);
@@ -43,7 +43,7 @@ namespace api.Controller
             return Ok(product.ToProductDto());
         }
 
-        [HttpGet("{Name}")]
+        [HttpGet("by-name/{Name}")]
         public async Task<IActionResult> GetByName([FromRoute] string Name)
         {
             var product = await _productRepository.GetByNameAsync(Name);
