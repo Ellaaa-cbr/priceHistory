@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ProductListPage from './pages/ProductListPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 
-
 function App() {
+  const [count, setCount] = useState(0)
+
   return (
     <BrowserRouter>
       <Routes>
@@ -14,7 +15,7 @@ function App() {
         <Route path="/product/:productNo" element={<ProductDetailPage />} />
       </Routes>
     </BrowserRouter>
-  );
+  )
 }
 
-export default App;
+export default App

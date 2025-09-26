@@ -5,7 +5,7 @@ import { fetchAllProducts } from '../services/api';  // 已封装的 API 请求�
 function ProductListPage() {
   const [products, setProducts] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('全部');
+  const [selectedCategory, setSelectedCategory] = useState('all');
 
   useEffect(() => {
     // 获取所有商品数据
@@ -19,18 +19,18 @@ function ProductListPage() {
   // 根据搜索关键字和分类筛选商品列表
   const filteredProducts = products.filter(product => {
     const matchQuery = product.name.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchCategory = selectedCategory === '全部' || product.category === selectedCategory;
+    const matchCategory = selectedCategory === 'all' || product.category === selectedCategory;
     return matchQuery && matchCategory;
   });
 
   // 提取所有分类选项（含“全部”）
-  const categories = ['全部', ...new Set(products.map(p => p.category))];
+  const categories = ['all', ...new Set(products.map(p => p.category))];
 
   return (
     <div className="grid">
       {/* 标题和总数 */}
       <div className="stack">
-        <h2 style={{ margin: 0 }}>商品列表</h2>
+        <h2 style={{ margin: 0 }}>product list</h2>
         <span className="pill">{filteredProducts.length} products in total</span>
       </div>
       {/* 搜索和分类筛选框 */}
@@ -55,8 +55,8 @@ function ProductListPage() {
             {/* 点击商品项跳转到详情页 */}
             <Link to={`/product/${product.productNo}`}>
               <h3>{product.name}</h3>
-              <p>价格: ${product.price}</p>
-              <p>分类: {product.category}</p>
+              <p>price: ${product.price}</p>
+              <p>category: {product.category}</p>
             </Link>
           </div>
         ))}
